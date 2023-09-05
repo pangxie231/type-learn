@@ -10,9 +10,13 @@ type cases = [
   Expect<Equal<typeof promiseAllTest1, Promise<[1, 2, 3]>>>,
   Expect<Equal<typeof promiseAllTest2, Promise<[1, 2, number]>>>,
   Expect<Equal<typeof promiseAllTest3, Promise<[number, number, number]>>>,
-  Expect<Equal<typeof promiseAllTest4, Promise<number[]>>>,
+  Expect<Equal<typeof promiseAllTest4, Promise<number[]>>>
 ]
 
-
 // ============= Your Code Here =============
-declare function PromiseAll(values: any): any
+declare function PromiseAll<T extends any[]>(
+  values: readonly [...T]
+): Promise<{
+  [P in keyof T]: T[P] extends Promise<infer R> ? R : T[P]
+}>
+
