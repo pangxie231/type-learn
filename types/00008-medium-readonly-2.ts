@@ -32,9 +32,7 @@ interface Expected {
 
 // ============= Your Code Here =============
 type MyReadonly2<T, K extends keyof T = keyof T> = {
-  readonly [P in K]: T[P]
+  [P in keyof T as P extends K ? never : P]: T[P]
 } & {
-  [P in Exclude<keyof T , K>]: T[P]
+  readonly [P in K]: T[P]
 }
-
-type A = MyReadonly2<Todo2, 'description'>
