@@ -15,4 +15,13 @@ type cases = [
 ]
 
 // ============= Your Code Here =============
-// type Flatten<T extends any[], T2 extends any[] = []> =
+type Flatten<T extends any[], T2 extends any[] = []> = T extends [
+  infer F,
+  ...infer R
+]
+  ? F extends any[]
+    ? Flatten<[...F, ...R], T2>
+    : Flatten<R, [...T2, F]>
+  : T2
+
+type A = Flatten<[1, 2, 3, 4]>
