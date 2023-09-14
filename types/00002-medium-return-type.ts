@@ -8,7 +8,7 @@ type cases = [
   Expect<Equal<Promise<boolean>, MyReturnType<() => Promise<boolean>>>>,
   Expect<Equal<() => 'foo', MyReturnType<() => () => 'foo'>>>,
   Expect<Equal<1 | 2, MyReturnType<typeof fn>>>,
-  Expect<Equal<1 | 2, MyReturnType<typeof fn1>>>
+  Expect<Equal<1 | 2, MyReturnType<typeof fn1>>>,
 ]
 
 type ComplexObject = {
@@ -17,9 +17,11 @@ type ComplexObject = {
   prev(): number
 }
 
-const fn = (v: boolean) => (v ? 1 : 2)
-const fn1 = (v: boolean, w: any) => (v ? 1 : 2)
+const fn = (v: boolean) => v ? 1 : 2
+const fn1 = (v: boolean, w: any) => v ? 1 : 2
+
 
 // ============= Your Code Here =============
-type MyReturnType<T> = T extends (...arg: any[])=> infer S ?  S : any
+type MyReturnType<T extends Function> = T extends (...args: any)=> infer R ? R : never
 
+type A = MyReturnType<typeof fn>
