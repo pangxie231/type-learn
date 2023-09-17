@@ -15,7 +15,7 @@ interface Todo {
   completed: boolean
 }
 
-interface Expected1 { 
+interface Expected1 {
   title: string
   completed: boolean
 }
@@ -27,5 +27,5 @@ interface Expected2 {
 
 // ============= Your Code Here =============
 type MyOmit<T, K extends keyof T> = {
-  [P in keyof T as P extends K ? never : P]: T[P]
+  [P in keyof T as P extends K ? never : P]: T[P] 
 }
