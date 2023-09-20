@@ -7,6 +7,7 @@ type cases = [
   Expect<Equal<Replace<'foobarbar', '', 'foo'>, 'foobarbar'>>,
   Expect<Equal<Replace<'foobarbar', 'bar', ''>, 'foobar'>>,
   Expect<Equal<Replace<'foobarbar', 'bra', 'foo'>, 'foobarbar'>>,
+<<<<<<< HEAD
   Expect<Equal<Replace<'', '', ''>, ''>>
 ]
 
@@ -22,3 +23,11 @@ type Replace<
   : S
 
 type A = Replace<'foobarbar', '', 'foo'>
+=======
+  Expect<Equal<Replace<'', '', ''>, ''>>,
+]
+
+
+// ============= Your Code Here =============
+type Replace<S extends string, From extends string, To extends string> = any
+>>>>>>> b3685b0aa03c142c0fea1620fa47d15696381923
