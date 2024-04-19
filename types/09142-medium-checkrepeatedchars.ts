@@ -12,7 +12,7 @@ type cases = [
 // ============= Your Code Here =============
 type CheckRepeatedChars<
   T extends string,
-  U extends any[] = []
+  U  extends string[] = []
 > = T extends `${infer A}${infer B}`
   ? A extends U[number]
     ? true
@@ -20,4 +20,5 @@ type CheckRepeatedChars<
   : false
 
 
-
+// type Text = 2 extends [1,2][number] ? true :false
+// var a: Text

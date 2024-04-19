@@ -25,6 +25,4 @@ type cases = [
 
 
 // ============= Your Code Here =============
-// type ConstructTuple<L extends number, T extends unknown[] = []> = L extends T['length'] ? T : ConstructTuple<L, [...T, unknown]>;
-// type TupleRange<T extends any[], U extends any[], R = []> = any
-// type NumberRange<L extends number, H extends number> = TupleRange<ConstructTuple<L>, ConstructTuple<H>>
+type NumberRange<L, H, R = null> = 
