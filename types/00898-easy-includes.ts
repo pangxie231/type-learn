@@ -30,16 +30,36 @@ type cases = [
 
 // 接受两个类型
 // 可以理解为一个类型，去extendsA1和A2，
-type MyEqual <A1,A2> = <T>()=> T extends A1 ? T extends A2 ? true : false : false 
-type Includes<T extends readonly any[], U> = T extends [infer A, ...infer Rest]
-  ? MyEqual<U, A> extends true
-    ? true
-    : Includes<Rest, U>
-  : false
+// type MyEqual <A1,A2> = (<T>()=> T extends A1 ? 1 : 2) extends 1 ? 1 : 2
+
+// type Includes<T extends readonly any[], U> = T extends [infer A, ...infer Rest]
+//   ? Equal<U, A> extends true
+//     ? true
+//     : Includes<Rest, U>
+//   : false
+type BooleanToStr<T> = [T] extends [boolean] ? boolean : [T] extends [true] ? `${true}` : [T] extends [false] ? `${false}` : T
+type Includes<T extends readonly any[], U> = any
+// [BooleanToStr<U>]
+
+// extends [true] ? true : false
+
+
+// [BooleanToStr<U>] extends true ? true : false
+// extends true ? true : false
+// extends true ? true : false
+
+// var a: Includes<[{}], { a: 'A' }>
+
+// a['false']
 
 type Tup = ['Kars', 'Esidisi', 'Wamuu', 'Santana']
-type A = {a: string} extends  {readonly a: string} ? true :false
-var a: MyEqual<1,1>
+type A = { a: string } extends { readonly a: string } ? true : false
 
+// type TestEqual = ((a: { readonly a: string }) => string) extends (a: {
+//   a: string
+// }) => {}
+//   ? true
+//   : false
+// var a: TestEqual
 
-
+// a
