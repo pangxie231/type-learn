@@ -23,15 +23,3 @@ type error = TupleToObject<[[1, 2], {}]>
 type TupleToObject<T extends readonly PropertyKey[]> = {
   [P in T[number]]: P
 }
-
-type A<T extends readonly any[]> = T[number]
-var arr = [ {a: 1}, {a: 2, b: 3} ]
-var a: A<typeof arr>
-
-// T[number] T为数组，如果数组项为string，那么T[number]为联合类型
-// 如果数组项为对象，那么T[number]为一个对象的值； 如果某个key不是每个对象都有，那么就是可选属性，访问的时候会加上 ?
-
-// PropertyKey为 联合类型string|symbol|number，只有这些属性才能作为对象的key
-
-
-

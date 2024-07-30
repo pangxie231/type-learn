@@ -28,17 +28,3 @@ interface Expected2 {
 type MyPick<T, K extends keyof T> = {
   [P in K]: T[P]
 }
-
-// keyof可以获取对象的key类型，获取的是一个联合类型
-// 而联合类型又可以用来 in 循环
-
-const obj = {a: '1', b: 2}
-type keys = keyof typeof obj
-// 可以看到string也可以in
-// 
-type MyRecord<U extends string> = {
-  [P in U]: string
-}
-
-var a: keys;
-var b: MyRecord<keys>
