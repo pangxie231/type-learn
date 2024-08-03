@@ -30,17 +30,3 @@ type Equals<X, Y> =
 type Includes<T extends readonly any[], U> = T extends [infer F,...infer Arg] 
 ? Equals<U, F> extends true ? true : Includes<Arg, U>
 : false
-
-
-
-type Tuple = [1,2,3]
-type OperatorInTuple<T extends any[]> = {
-  [P in keyof T]: T[P] 
-}
-type Arr = OperatorInTuple<Tuple>
-
-// 类型为 [1,2,3]
-var arr: Arr
-
-
-type A = number == string
