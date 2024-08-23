@@ -14,4 +14,4 @@ type cases = [
 
 // ============= Your Code Here =============
 type Space = '\n' | '\t' | ' '
-type TrimLeft<S extends string> = S extends `${Space}${infer Arg}` ? TrimLeft<Arg> : S
+// type TrimLeft<S extends string> = S extends `${Space}${infer Arg}` ? TrimLeft<Arg> : S
