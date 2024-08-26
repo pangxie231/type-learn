@@ -5,7 +5,7 @@ type cases = [
   Expect<Alike<MyReadonly2<Todo1>, Readonly<Todo1>>>,
   Expect<Alike<MyReadonly2<Todo1, 'title' | 'description'>, Expected>>,
   Expect<Alike<MyReadonly2<Todo2, 'title' | 'description'>, Expected>>,
-  Expect<Alike<MyReadonly2<Todo2, 'description' >, Expected>>,
+  Expect<Alike<MyReadonly2<Todo2, 'description'>, Expected>>,
 ]
 
 // @ts-expect-error
@@ -31,9 +31,12 @@ interface Expected {
 
 
 // ============= Your Code Here =============
-type MyReadonly2<T, K extends keyof T = keyof T> = {
-  readonly[P in keyof T as P extends K ? P : never] : T[P]
-} &
-{
-  [P in keyof T as P extends K ? never : P]: T[P]
-}
+// type MyReadonly2<T, K extends keyof T = keyof T> = {
+//   readonly[P in keyof T as P extends K ? P : never] : T[P]
+// } &
+// {
+//   [P in keyof T as P extends K ? never : P]: T[P]
+// }
+
+
+type MyReadonly2<T, K extends keyof T = keyof T> = Omit<T, K> & Readonly<Pick<T, K>>
