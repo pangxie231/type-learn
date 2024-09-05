@@ -24,9 +24,10 @@ type cases = [
 
 
 // ============= Your Code Here =============
-type Diff<O, O1> = Omit<O & O1, keyof (O | O1)>
-var a :Diff<Foo, Bar>
+type Diff<O extends object, O1 extends object> = Omit<O & O1, keyof(O | O1)>
 
+// {
+//   [P in keyof(O & O1) as P extends keyof(O | O1) ? never : P]: (O & O1)[P]
+// }
 
-
-
+// var a: Diff<Foo, Bar>
