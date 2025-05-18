@@ -16,7 +16,6 @@ interface Todo1 {
 
 
 // ============= Your Code Here =============
-type MyReadonly<T extends object> = {
-  readonly [P in keyof T]: T[P] 
+type MyReadonly<T> = {
+  readonly [P in keyof T]: T[P]
 }
-

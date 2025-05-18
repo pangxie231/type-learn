@@ -9,4 +9,5 @@ type cases = [
 
 
 // ============= Your Code Here =============
+// type Last<T extends any[]> = T extends [...any, infer Last] ? Last : []
 type Last<T extends any[]> = [any,...T][T['length']]
